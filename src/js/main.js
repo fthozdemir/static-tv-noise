@@ -11,8 +11,8 @@ window.onresize = resize;
 (function loop() {
   var time = performance.now();
 
-  //noisePutImage(ctx);
-  noiseDrawImage(ctx, 10);
+  noisePutImage(ctx);
+  //noiseDrawImage(ctx, 10);
 
   time = (performance.now() - time) * 1000;
   putInfo(time);
