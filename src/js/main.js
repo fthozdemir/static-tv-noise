@@ -1,3 +1,7 @@
+let properties = {
+  logFrameCount: 1,
+};
+
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d");
 
@@ -8,10 +12,12 @@ function resize() {
 resize();
 window.onresize = resize;
 
+frameDataArray = new FrameDataArray(10);
+
 (function loop() {
   var time = performance.now();
 
-  noisePutImage(ctx);
+  noisePutImage(ctx, frameDataArray);
   //noiseDrawImage(ctx, 10);
 
   time = (performance.now() - time) * 1000;

@@ -1,20 +1,27 @@
-function noisePutImage(ctx) {
+function noisePutImage(ctx, frameDataArray) {
   const noiseData = ctx.createImageData(info.width, info.height);
 
   var w = 0;
-  for (let i = 0; i < noiseData.data.length - info.width; i += 8) {
+  var len = noiseData.data.length;
+  for (let i = 0; i < len - info.width; i += 8) {
     // Modify pixel data
     randomValue = Math.random() > 0.55 ? 255 : 0;
     noiseData.data[i + 3] = randomValue;
+
     noiseData.data[i + 7] = randomValue;
-    noiseData.data[i + info.width + (3 - (info.width % 4))] = randomValue;
-    noiseData.data[i + info.width + (7 - (info.width % 4))] = randomValue;
-    w += 4;
+
+    noiseData.data[i + info.width * 4 + 3] = randomValue;
+
+    noiseData.data[i + info.width * 4 + 7] = randomValue;
+
+    w += 2;
     if (w > info.width) {
-      i += w;
+      i += w * 4 - 8;
       w = 0;
     }
   }
+
+  addFrameArray(noiseData, frameDataArray);
   ctx.putImageData(noiseData, 0, 0);
 }
 
