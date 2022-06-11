@@ -36,10 +36,10 @@ function noisePutImage(ctx, frameDataArray) {
  *
  */
 function noiseDrawImage(ctx, scaleRatio) {
-  var c1 = document.createElement("canvas");
+  let c1 = document.createElement("canvas");
   c1.width = info.width / scaleRatio;
   c1.height = info.height / scaleRatio;
-  var ctx1 = c1.getContext("2d");
+  let ctx1 = c1.getContext("2d");
   const noiseData = ctx1.createImageData(c1.width, c1.height);
 
   // Iterate through every pixel

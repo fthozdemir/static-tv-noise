@@ -14,10 +14,13 @@ resize();
 window.onresize = resize;
 
 frameDataArray = new FrameDataArray(10);
-noisePutImage(ctx, frameDataArray);
-console.log(toStringFrameArray(frameDataArray));
+fs.writeFile('/Users/otto/Desktop/test.json', '', err => {
+  if (err) {
+    console.error(err);
+  }
+// file written successfully
+});
 
-/*
 (function loop() {
   var time = performance.now();
 
@@ -28,4 +31,4 @@ console.log(toStringFrameArray(frameDataArray));
   putInfo(time);
   requestAnimationFrame(loop);
 })();
-*/
+
