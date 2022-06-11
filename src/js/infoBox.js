@@ -1,9 +1,3 @@
-let info = {
-  fps: 60,
-  width: canvas.width,
-  height: canvas.height,
-};
-
 function fpsMeter() {
   let prevTime = performance.now(),
     frames = 0;
