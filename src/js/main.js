@@ -1,9 +1,10 @@
-let properties = {
-  logFrameCount: 1,
-};
-
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d");
+let info = {
+  fps: 60,
+  width: canvas.width,
+  height: canvas.height,
+};
 
 function resize() {
   info.width = canvas.width = window.innerWidth;
@@ -13,7 +14,10 @@ resize();
 window.onresize = resize;
 
 frameDataArray = new FrameDataArray(10);
+noisePutImage(ctx, frameDataArray);
+console.log(toStringFrameArray(frameDataArray));
 
+/*
 (function loop() {
   var time = performance.now();
 
@@ -24,3 +28,4 @@ frameDataArray = new FrameDataArray(10);
   putInfo(time);
   requestAnimationFrame(loop);
 })();
+*/
