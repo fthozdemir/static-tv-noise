@@ -1,3 +1,5 @@
+
+//
 function fpsMeter() {
   let prevTime = performance.now(),
     frames = 0;
@@ -16,12 +18,12 @@ function fpsMeter() {
   });
 }
 
-function putInfo() {
-  fpsMeter();
+function putInfo(time) {
+  //fpsMeter();
   ctx.font = "30px Arial";
   ctx.fillStyle = "orange";
-  var infoText =
-    "Resolution:" + info.width + " x " + info.height + " FPS:" + info.fps;
+  let infoText =
+    "Resolution:" + info.infoResolutionString ;
 
   ctx.fillText(infoText, 50, 50);
 }
