@@ -6,8 +6,15 @@ electron.js TV Noise Desktop Application for infinia interview.
 #### Level 1
 For only the web application try branch [Level-1](https://github.com/fthozdemir/static-tv-noise/tree/level-1)
 or live https://fthozdemir.github.io/static-tv-noise/
-## Level 2 
+#### Level 2 
 
+I used electron-forge as packager.  Releases are to big to upload them to github. For the pack the app run;
+
+```
+npm start make
+```
+this  will release the app according to your operating system.
+Then checkout  *out/* folder to run. 
 
 ## How to install & Run
 
