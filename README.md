@@ -24,6 +24,8 @@ log file will be locate at the main directory of the app  as *logs.json*
  
 ## How to install & Run
 
+*git 0.1.5 is a partial implementation of access to git object database; for other not implemented things it requires native git command line.*
+
 download the git clone zip and extract or clone it
 
 ```
