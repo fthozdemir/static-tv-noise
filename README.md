@@ -8,7 +8,7 @@ For only the web application try branch [Level-1](https://github.com/fthozdemir/
 or live https://fthozdemir.github.io/static-tv-noise/
 #### Level 2 
 
-I used electron-forge as packager.  Releases are to big to upload them to github. For the pack the app run the following code **after the installation**
+I used electron-forge as packager.  Releases are to big to upload them to github. For the packing the app, run the following code **after the installation**
 
 ```
 npm run package
@@ -18,7 +18,7 @@ Then checkout  *out/* folder to run.
 
 #### Level 3
 
-I could not figure it out performance issues of writing the json file, So that I add a button switch it out the logging on / off.
+I could not figure it out performance issues of writing the json file, so that I add a button switch it out the logging on / off.
 
 log file will be locate at the main directory of the app  as *logs.json*
  
