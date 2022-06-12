@@ -30,9 +30,8 @@ download the git clone zip and extract or clone it
 
 ```
 git clone https://github.com/fthozdemir/static-tv-noise.git
+cd  static-tv-noise
 ```
-
-go into the static-tv-noise folder from terminal
 
 intall packages
 
