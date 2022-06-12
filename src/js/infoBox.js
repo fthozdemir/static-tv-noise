@@ -16,12 +16,12 @@ function fpsMeter() {
   });
 }
 
-function putInfo() {
+function putInfo(time) {
   fpsMeter();
   ctx.font = "30px Arial";
   ctx.fillStyle = "orange";
   var infoText =
-    "Resolution:" + info.width + " x " + info.height + " FPS:" + info.fps;
+    "Resolution:" + info.width + " x " + info.height ;
 
   ctx.fillText(infoText, 50, 50);
 }

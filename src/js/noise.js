@@ -21,8 +21,13 @@ function noisePutImage(ctx, frameDataArray) {
     }
   }
 
-  addFrameArray(noiseData, frameDataArray);
+  if(info.isLogActive)addFrameArrayAsync(noiseData, frameDataArray);
   ctx.putImageData(noiseData, 0, 0);
+}
+
+async function addFrameArrayAsync(noiseData, frameDataArray)
+{
+   await addFrameArray(noiseData, frameDataArray);
 }
 
 /*

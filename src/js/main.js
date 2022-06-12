@@ -4,6 +4,7 @@ let info = {
   fps: 60,
   width: canvas.width,
   height: canvas.height,
+  isLogActive: false
 };
 
 function resize() {
@@ -13,22 +14,28 @@ function resize() {
 resize();
 window.onresize = resize;
 
-frameDataArray = new FrameDataArray(10);
-fs.writeFile('/Users/otto/Desktop/test.json', '', err => {
-  if (err) {
-    console.error(err);
-  }
-// file written successfully
-});
 
-(function loop() {
-  var time = performance.now();
+function initiliaze() {
+  frameDataArray = new FrameDataArray(10);
+  fs.writeFile('/Users/otto/Desktop/test.json', '', err => {
+    if (err) {
+      console.error(err);
+    }
+    // file written successfully
+  });
+}
+initiliaze();
 
-  noisePutImage(ctx, frameDataArray);
-  //noiseDrawImage(ctx, 10);
+var btn = document.getElementById("logActivity");
+btn.onclick = function () {
+  info.isLogActive = !info.isLogActive;
+  btn.innerHTML=info.isLogActive ? "LOG ON" : "LOG OFF";
+};
 
-  time = (performance.now() - time) * 1000;
-  putInfo(time);
-  requestAnimationFrame(loop);
-})();
+  (function loop() {
 
+    noisePutImage(ctx, frameDataArray);
+    //noiseDrawImage(ctx, 10);
+    putInfo();
+    requestAnimationFrame(loop);
+  })();

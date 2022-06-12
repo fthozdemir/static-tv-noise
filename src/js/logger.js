@@ -14,7 +14,7 @@ class FrameDataArray {
     } else {
       this.array[this.head] = element;
       this.head++;
-      if (this.head >= this.size) this.head = 0;
+      if (this.head >= this.size-1) this.head = 0;
     }
   }
   popAll() {
@@ -38,41 +38,32 @@ function logData(data) {
 }
 
 //2
-function reFormatPixelData(noiseData) {
-  let w = 0;
-  let x = 0;
-  let frameData =[];
-  let len = noiseData.data.length;
-  for (let i = 0; i < len; i += 4) {
-    let y = w;
-    let color = noiseData.data[i + 3] > 0 ? "black" : "white";
-    frameData.push({ x: x, y: y, color: color });
-    w += 1;
-    if (w > info.height) {
-      w = 0;
-      x++;
+async function reFormatPixelData(noiseData) {
+
+  const width=noiseData.width;
+  const height=noiseData.height;
+  let frameData = Array(width*height);
+  let index =0;
+  for (let x = 0; x < width; x ++) {
+    for (let y = 0; y < height; y ++) {
+    let color = noiseData.data[x*y + 3] > 0 ? "black" : "white";
+    frameData[index++]={ x: x, y: y, color: color };
     }
-  }
-  return frameData;
+}
+return frameData;
 }
 //1
 function reFormatPixelDataJSON(noiseData) {
-  var w = 0;
-  var x = 0;
-  const len = noiseData.data.length;
-  var jsonString = '{"resolution":"1920x1080" data":[';
-  for (let i = 0; i < len; i += 4) {
-    var y = w;
-    var color = noiseData.data[i + 3] > 0 ? "black" : "white";
+  let jsonString = '{"resolution":"1920x1080" data":[';
+  const width=noiseData.width;
+  const height=noiseData.height;
+  for (let x = 0; x < width; x ++) {
+    for (let y = 0; y < height; y ++) {
+    let color = noiseData.data[x*y + 3] > 0 ? "black" : "white";
     jsonString += '{"x":' + x + ',"y":' + y + ',"color":' + color + "},";
-    w += 1;
-    if (w > info.height) {
-      w = 0;
-      x++;
-    }
   }
+}
   jsonString += "]}";
-  return jsonString;
 }
 
 /*
@@ -81,23 +72,36 @@ function reFormatPixelDataJSON(noiseData) {
 * stringleri memoryde tutmadan yazmaya kalkışınca da (3) "too many open files" hatası
 *
 */
-function addFrameArray(noiseData, frameDataArray) {
-  //frameDataArray.push(reFormatPixelDataJSON(noiseData));
-  //frameDataArray.push(reFormatPixelData(noiseData));
-  //writePixelDataJSON(noiseData);
-  reFormatPixelData(noiseData);
+async function addFrameArray(noiseData, frameDataArray) {
+ await  reFormatPixelData(noiseData)
+   .then(formattedArray => {
+    frameDataArray.push(formattedArray);
+   })
+   .then(writeJSON(JSON.stringify(frameDataArray)));
+
 }
 
-function appendJSON(content)
+
+async function appendJSON(content)
 {
-  (async () => { 
-    await fs.appendFile('/Users/otto/Desktop/test.json', content, err => {
-      if (err) {
-        console.error(err);
-      }
-    // file written successfully
-    })
-  });
+  const fs = require ('fs').promises;
+  try{
+    await fs.appendFile('/Users/otto/Desktop/test.json', content )
+  }
+    catch(error){
+      console.error(error);
+    }
+}
+
+async function writeJSON(content)
+{
+  const fs = require ('fs').promises;
+  try{
+    await fs.writeFile('/Users/otto/Desktop/test.json', content )
+  }
+    catch(error){
+      console.error(error);
+    }
 }
 
 //3
