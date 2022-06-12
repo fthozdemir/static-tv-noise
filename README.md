@@ -8,7 +8,7 @@ For only the web application try branch [Level-1](https://github.com/fthozdemir/
 or live https://fthozdemir.github.io/static-tv-noise/
 #### Level 2 
 
-I used electron-forge as packager.  Releases are to big to upload them to github. For the pack the app run;
+I used electron-forge as packager.  Releases are to big to upload them to github. For the pack the app run the following code **after the installation**
 
 ```
 npm start make
