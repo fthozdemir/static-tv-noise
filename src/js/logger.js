@@ -6,6 +6,7 @@ class FrameDataArray {
     this.length = 0;
     this.head = 0;
   }
+  //this push guaranties the last 10 frame storing. 
   push(element) {
     this.resulotion = info.infoResolutionString;
     if (this.length < this.size) {
@@ -36,7 +37,9 @@ class FrameDataArray {
   }
 }
 
-// 2 - 
+// Tried several ways to write file.
+
+//  return each frame data as an array of Json objects.
 async function formatPixelDataAsObject(noiseData) {
 
   const width = noiseData.width;
@@ -51,7 +54,9 @@ async function formatPixelDataAsObject(noiseData) {
   }
   return frameData;
 }
-// 1 - 
+
+//  return each frame data as expected string.
+
 function formatPixelDataAsString(noiseData) {
   let jsonString = '{"resolution":"1920x1080" data":[';
   const width = noiseData.width;
@@ -63,9 +68,13 @@ function formatPixelDataAsString(noiseData) {
     }
   }
   jsonString += "]}";
+  
+  return jsonString;
 }
 
-// 3 - 
+// Keeping all the data and writing is expencive process. So that, I tried partial writing.
+// First keep all the data of one line, then write it to file and repeat.
+// This function have better performance, but no frame count limitation.
 function writePixelDataJSON(noiseData) {
   const width = noiseData.width;
   const height = noiseData.height;
@@ -83,6 +92,7 @@ function writePixelDataJSON(noiseData) {
   jsonString += "]}";
   appendJSON(jsonString);
 }
+
 
 async function addFrameArray(noiseData, frameDataArray) {
   await formatPixelDataAsObject(noiseData)
