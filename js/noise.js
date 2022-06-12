@@ -1,4 +1,4 @@
-function noisePutImage(ctx, frameDataArray) {
+function noisePutImage(ctx) {
   let noiseData = ctx.createImageData(info.width, info.height);
   const width = noiseData.width;
   const height = noiseData.height;
@@ -16,12 +16,5 @@ function noisePutImage(ctx, frameDataArray) {
     }
   }
 
-  if (info.isLogActive)
-    addFrameArrayAsync(noiseData, frameDataArray);
-
   ctx.putImageData(noiseData, 0, 0);
-}
-
-async function addFrameArrayAsync(noiseData, frameDataArray) {
-  await addFrameArray(noiseData, frameDataArray);
 }
